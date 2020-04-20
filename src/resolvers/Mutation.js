@@ -1,6 +1,6 @@
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
-const { APP_SECRET, getUserId } = require('../src/utils')
+const { APP_SECRET, getUserId } = require('../utils')
 
 
 async function signup(root, args, context, info) {
@@ -26,7 +26,7 @@ async function login(root, args, context, info) {
 
     const valid = await bcrypt.compare(args.password, password)
     if (!valid) {
-        throw new Error('Invalid password')
+        throw new Error('Invaid Password')
     }
 
     const token = jwt.sign({ userId: user.id }, APP_SECRET)
